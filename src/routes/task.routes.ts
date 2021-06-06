@@ -29,9 +29,17 @@ const router = Router()
  */
 /**
  * @swagger
+ * tags:
+ *  name: Tareas
+ *  description: Endpoints relacionados con tareas 
+ */
+router.get('/tasks', getTasks)
+/**
+ * @swagger
  * /tasks:
  *  get:
  *      summary: Return task list
+ *      tags: [Tareas]
  *      responses: 
  *         200:
  *           description: the list of tasks returned
@@ -42,8 +50,22 @@ const router = Router()
  *                 items:
  *                  $ref: '#/components/schemas/Task'
  */
-router.get('/tasks', getTasks)
 router.get('/tasks/count', getTaskCount)
+/**
+ * @swagger
+ * /tasks/count:
+ *  get:
+ *      summary: Return task count
+ *      tags: [Tareas]
+ *      responses: 
+ *         200:
+ *           description: the count of tasks on db
+ *           content:
+ *             text/plain:
+ *               schema:
+ *                 type: number
+ *                 example: 10
+ */
 router.get('/tasks/:id', getTask)
 router.post('/tasks', createTask)
 router.put('/tasks/:id', (req, res) => { res.send('hello world') })
